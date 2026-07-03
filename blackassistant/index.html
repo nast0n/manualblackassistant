@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Black Assistant - Manual de Usuario Oficial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .version {
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        /* Layout principal */
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+
+        /* Sidebar - Índice */
+        .sidebar {
+            width: 280px;
+            background: #f8f9fc;
+            border-right: 1px solid #e0e4e8;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 1.5rem 0;
+        }
+
+        .sidebar h3 {
+            padding: 0 1.5rem;
+            color: #2c3e50;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #2c5364;
+            margin-left: 1rem;
+            padding-left: 0.8rem;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+        }
+
+        .sidebar nav ul li {
+            margin: 0.3rem 0;
+        }
+
+        .sidebar nav ul li a {
+            display: block;
+            padding: 0.6rem 1.5rem 0.6rem 2rem;
+            color: #2c3e50;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar nav ul li a:hover {
+            background: #e9ecef;
+            border-left-color: #2c5364;
+            padding-left: 2.2rem;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-x: auto;
+        }
+
+        /* Secciones */
+        .section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 1rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #0f2027;
+            border-bottom: 3px solid #2c5364;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: #203a43;
+            margin: 1.5rem 0 0.8rem 0;
+            display: inline-block;
+            background: #eef2f7;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 1.2rem 1.5rem;
+            margin: 1.2rem 0;
+            border: 1px solid #e9ecef;
+            transition: transform 0.1s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .step {
+            background: #f8f9fc;
+            border-left: 4px solid #2c5364;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .step strong {
+            color: #2c5364;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #2c5364;
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            margin-right: 0.5rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 5px solid #2196f3;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.8rem;
+            text-align: left;
+        }
+
+        th {
+            background: #203a43;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .image-placeholder {
+            background: #e9ecef;
+            border: 2px dashed #adb5bd;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            margin: 1rem 0;
+            color: #6c757d;
+        }
+
+        .image-placeholder i {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #0f2027;
+            color: white;
+            margin-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+                padding: 0.5rem 0;
+            }
+            .sidebar nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.3rem;
+                padding: 0 1rem;
+            }
+            .sidebar nav ul li a {
+                padding: 0.4rem 1rem;
+                background: #e9ecef;
+                border-radius: 20px;
+                margin: 0.2rem;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .main-content {
+                padding: 1rem;
+            }
+        }
+
+        /* Tooltip para íconos */
+        .icon-tip {
+            cursor: help;
+            border-bottom: 1px dotted #2c5364;
+        }
+/* Botón flotante de WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    background-color: #25d366;
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    animation: pulse-whatsapp 2s infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-float img {
+    width: 40px;
+    height: 40px;
+    filter: brightness(0) invert(1);
+}
+
+/* Animación de pulso */
+@keyframes pulse-whatsapp {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+    }
+    .whatsapp-float img {
+        width: 32px;
+        height: 32px;
+    }
+}
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>📱 Black Assistant</h1>
+    <p>Manual de usuario completo - Gestión de ventas y citas</p>
+    <div class="version">Versión 2.0 · Actualizado 2026</div>
+</div>
+
+<div class="container">
+    <!-- Índice lateral -->
+    <aside class="sidebar">
+        <h3>📖 Contenido</h3>
+        <nav>
+            <ul>
+                <li><a href="#inicio">🚀 1. Inicio de sesión</a></li>
+                <li><a href="#agenda">📅 2. Pantalla principal</a></li>
+                <li><a href="#prospectos">👥 3. Gestión de Prospectos</a></li>
+                <li><a href="#detalle-prospecto">🔍 4. Detalle del Prospecto</a></li>
+                <li><a href="#agregar-cita">📌 5. Agregar Cita</a></li>
+                <li><a href="#calendario">🗓️ 6. Calendario y Agenda</a></li>
+                <li><a href="#resultado">📊 7. Resultado de Cita (Métricas)</a></li>
+                <li><a href="#perfil">👤 8. Perfil del Representante</a></li>
+                <li><a href="#productos">💰 9. Productos y Financiación</a></li>
+                <li><a href="#consejos">💡 10. Consejos rápidos</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Contenido principal rediseñado -->
+    <main class="main-content">
+        
+        <!-- SECCIÓN 1 -->
+<section id="inicio" class="section">
+    <h2>🚀 1. Inicio de sesión</h2>
+    <p><strong>Paso 1:</strong> te llegara una invitacion a tu email de appsheet, te saldran dos opciones " open browser " es para usarlo desde la PC y install para descargar la app al telefono </p>
+    <p><strong>Paso 2:</strong> Ingresa con tu <span class="icon-tip" title="Usa el correo corporativo o personal que registraste">📧 correo electrónico proporcionado</span> </p>
+    
+    <img src="imagen/login.png" alt="Pantalla de inicio de sesión" style="max-width:100%; border-radius:12px; margin:1rem 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+
+       <!-- SECCIÓN 2 -->
+<section id="agenda" class="section">
+    <h2>📅 2. Pantalla principal</h2>
+    <p>Al iniciar sesión, lo primero que verás es el <strong>menú</strong>: calendario, prospecto, recibo, desempeño y perfil.</p>
+    
+    <img src="imagen/menu.png" alt="Menú principal" style="max-width:100%; border-radius:12px; margin:1rem 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+    
+    <p>Para empezar elegimos <strong>Prospecto</strong> para comenzar a agregar contactos.</p>
+</section>
+
+        <!-- SECCIÓN 3: Prospectos -->
+        <section id="prospectos" class="section">
+            <h2>👥 3. Gestión de Prospectos</h2>
+            <p>Los prospectos son tus potenciales clientes. Para comenzar a trabajar, primero debes agregarlos.</p>
+            
+            <div class="card">
+                <h3>➕ Agregar un nuevo prospecto</h3>
+                <img src="imagen/prospecto.png" alt="Menú principal" style="max-width:100%; border-radius:12px; margin:1rem 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                <p>Completa los siguientes campos:</p>
+                <ul>
+                    <li><strong>Representante</strong>: Tu nombre o ID.</li>
+                    <li><strong>Origen del dato</strong>: ¿De dónde obtuviste el contacto? (Ej: redes, referido, llamada entrante).</li>
+                    <li><strong>Nombre y Apellido</strong> del prospecto.</li>
+                    <li><strong>Teléfono</strong> (sin cero, sin el 15).</li>
+                    <li><strong>Relación con el origen </strong>(amigo, pariente, compañero de trabajo ,etc.)</li>
+                    <li><strong>Vive en pareja</strong> (Sí/No).</li>
+			    <li><strong>cantidad de personas</strong> </li>
+<li><strong>donde trabajan</strong> prospecto y/o pareja.</li>
+<li><strong>otros datos relevantes</strong> (enfermedades, cuidados,etc).</li>
+                </ul>
+                <p>Luego haz clic en <strong>Guardar</strong>.</p>
+                <div class="warning-box">
+                    ⚠️ <strong>Importante:</strong> El teléfono debe ser correcto para poder enviar WhatsApp o SMS más adelante.
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📞 Estado y seguimiento</h3>
+                <p>A medida que tengas conversaciones, puedes <strong>cambiar el estado</strong> del prospecto para mantener un orden. Los estados se pueden crear con el nombre que quieran, lo que si , si son muchos estados es mas dificil tener un orden.</p>
+                <table>
+                    <tr><th>Estado</th><th>Significado</th></tr>
+                    <tr><td>🟡 Nuevo</td><td>Recién agregado, sin contacto.</td></tr>
+                    <tr><td>🟠 Contactado</td><td>Ya se le llamó o envió mensaje.</td></tr>
+                    <tr><td>🟢 Interesado</td><td>Mostró interés en el producto.</td></tr>
+                    <tr><td>🔴 No interesado</td><td>Rechazó la oferta.</td></tr>
+                    <tr><td>📅 Cita agendada</td><td>Tiene una cita programada.</td></tr>
+				<tr><td>📅 llamar luego</td><td>cuando no contesta o lo pide</td></tr>
+				<tr><td>📅Ya tuvo demo</td><td>si ya tuvo una demostracion.</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: Detalle del prospecto -->
+        <section id="detalle-prospecto" class="section">
+            <h2>🔍 4. Detalle del Prospecto</h2>
+            <p>Dentro del detalle de cada prospecto, tienes acciones rápidas muy útiles:</p>
+            <div class="grid-2">
+                <div class="card">
+                    <strong>📞 Llamar</strong>
+                    <p>Inicia una llamada directamente desde la app.</p>
+                </div>
+                <div class="card">
+                    <strong>💬 Enviar WP</strong>
+                    <p>Abre conversación de WhatsApp con el prospecto.</p>
+                </div>
+                <div class="card">
+                    <strong>✉️ SMS</strong>
+                    <p>Envía un mensaje de texto.</p>
+                </div>
+                <div class="card">
+                    <strong>📅 Agendar cita</strong>
+                    <p>Programa una reunión o llamado futuro.</p>
+                </div>
+            </div>
+            <img src="imagen/detalle.png" alt="Menú principal" style="max-width:100%; border-radius:12px; margin:1rem 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+            
+            <p>Dentro del prospecto en la parte inferior, encontraremos el historial de llamadas , citas, ventas y compras (si el prospecto es un cliente ).</p>
+<p><strong>➕ Agregar registro de llamadas:</strong> Puedes añadir una respuesta en cada llamado que se le hace al prospecto que incluira la fecha y hora para tener un recordatorio o control de telemarketing. También usar la opción <strong>"Volver a llamar"</strong> para que aparezca recordatorio en el calendario.</p>
+<div class="info-box">
+                📈 <strong>Métrica de llamadas:</strong> Cada vez que agregas una respuesta en un llamado, se guarda para generar estadísticas de desempeño.
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: Agregar cita -->
+        <section id="agregar-cita" class="section">
+            <h2>📌 5. Agregar Cita</h2>
+            <p>Desde el detalle del prospecto o desde el calendario, puedes crear una nueva cita.</p>
+            <div class="card">
+                <h3>Datos de la cita</h3>
+                <ul>
+                    <li><strong>📅 Fecha</strong> y hora de la cita.</li>
+                    <li><strong>📝 Nota</strong>: Algo que te sirva para identificar la casa, o qué llevar (o no llevar).</li>
+                    <li><strong>📍 Punto en el mapa</strong>: Arrastra el icono rojo hasta la ubicación exacta.</li>
+                    <li><strong>⚙️ Estado</strong>: Pendiente, Completada, Cancelada, Reagendada.</li>
+                </ul>
+                <img src="imagen/agregarcita.png" alt="Menú principal" style="max-width:100%; border-radius:12px; margin:1rem 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+            </div>
+        </section>
+
+        <!-- SECCIÓN 6: Calendario y agenda -->
+        <section id="calendario" class="section">
+            <h2>🗓️ 6. Calendario y Agenda (Listado de citas)</h2>
+            <p>En la sección <strong>Agenda</strong> se muestran todas tus citas programadas.</p>
+            <div class="step">
+                <strong>⚡ Características visuales:</strong>
+                <ul>
+                    <li><span style="background:#9b59b6; color:white; padding:2px 6px; border-radius:12px;">Morado</span> = Cita programada para hoy.</li>
+                    <li><del>Tachado</del> = Cita con fecha anterior (vencida).</li>
+                    <li>Puedes ver el nombre del cliente y el estado deslizando la pantalla.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <strong>Por cada registro (cita) puedes:</strong><br>
+                • Enviar WhatsApp al representante o al cliente.<br>
+                • Cambiar el estado del registro.<br>
+			• Cambiar el estado del registro.<br>
+                • Agregar el resultado de la cita (importante para métricas).
+            </div>
+        </section>
+
+        <!-- SECCIÓN 7: Resultado de la cita y desempeño -->
+        <section id="resultado" class="section">
+            <h2>📊 7. Resultado de la Cita (Desempeño)</h2>
+            <p>Al finalizar una cita, debes registrar el resultado. Esto alimenta tus métricas de desempeño.</p>
+            <div class="card">
+                <h3>Opciones de resolución:</h3>
+                <ul>
+                    <li>✅ <strong>VENTA</strong> – Se concretó la venta.</li>
+                    <li>❌ <strong>NO VENTA</strong> – No se concretó.</li>
+                    <li>⚠️ <strong>VENTA / NO CALIFICA</strong> – Venta pero el cliente no califica crediticiamente.</li>
+                    <li>🔄 <strong>VENTA / CANCELÓ</strong> – Venta cancelada después por el cliente.</li>
+                </ul>
+                <p><strong>Adicionalmente:</strong> Registra la <strong>cantidad de referidos</strong> que dejó el cliente, la <strong>comisión de la venta</strong> y <strong>notas</strong> adicionales.</p>
+               <img src="imagen/resultado.png" alt="Menú principal" style="max-width:100%; border-radius:12px; margin:1rem 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+            </div>
+            <div class="info-box">
+<h3>Monitor de Desempeño</h3></div>
+<p>En el menú inicial, esta el apartado desempeño, donde podremos ver y filtrar:</p>
+                <ul>
+                    <li>✅ <strong>fecha</strong> – elegir un periodo.</li>
+                    <li>✅ <strong>representante</strong> – elegir un representante.</li>
+                    <li> ✅<strong>distribucion</strong> – si tenemos varias distribuciones unidas podemos filtrar por alguna de ella.</li>
+                    
+                </ul>
+
+                <p><strong>Que filtraria:</strong> la cantidad de ventas ,citas , llamadas y comisiones.</p>
+<img src="imagen/desempeño.png" alt="Menú principal" style="max-width:100%; border-radius:12px; margin:1rem 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+<div class="card">
+                📈 <strong>Métrica de desempeño:</strong> Es muy importante que se complete todos los datos como una rutina, este datos nos ayudar a analizar el performace del representante y corregir falencias.
+        </div></section>
+
+        <!-- SECCIÓN 8: Perfil del representante -->
+        <section id="perfil" class="section">
+            <h2>👤 8. Perfil del Representante</h2>
+            <p>En la sección <strong>Perfil</strong> encuentras tus datos personales y, lo más importante, <strong>tus métricas de rendimiento</strong>.</p>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>📊 Indicadores que verás:</h3>
+                    <ul>
+                        <li>Número total de citas agendadas.</li>
+                        <li>Cantidad de prospectos y sus estados (nuevos, contactados, etc.).</li>
+                        <li>Desempeño de citas (cuántas terminaron en venta).</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>✏️ Editar perfil</h3>
+                    <p>Puedes modificar tus datos de contacto,telefono, email.colocar una foto.</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- SECCIÓN 9: Productos y financiación -->
+        <section id="productos" class="section">
+            <h2>💰 9. Lista de precios y Financiación</h2>
+            <p>La app incluye una sección <strong>Productos</strong> con todas las herramientas de cotización.</p>
+            <div class="card">
+                <h3>🔧 Funcionalidades:</h3>
+                <ul>
+                    <li><strong>lista de precios con financiación en cuotas:</strong> Puedes elegir el número de cuotas.</li>
+                    <li><strong>Anticipo:</strong> Ajustable por <strong>porcentaje</strong> o por <strong>monto fijo</strong>.</li>
+                    <li><strong>Combos:</strong> Selecciona hasta 3 productos y el sistema calcula automáticamente el costo por cuota. genera un pdf para enviarle al cliente.</li>
+                    <li><strong>Comparador de cuotas:</strong> Compara diferentes opciones de productos y plazos.</li>
+                </ul>
+                
+        </section>
+
+        <!-- SECCIÓN 10: Consejos rápidos -->
+        <section id="consejos" class="section">
+            <h2>💡 10. Consejos rápidos para maximizar tu rendimiento</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <strong>📌 Usa "Volver a llamar"</strong><br>
+                    Si un prospecto no contesta, prográmalo para otro día y no olvides seguirlo.
+                </div>
+                <div class="info-box">
+                    <strong>🏷️ Etiqueta los orígenes de datos</strong><br>
+                    Saber de dónde viene cada cliente te ayuda a enfocar tus esfuerzos.
+                </div>
+                <div class="info-box">
+                    <strong>📊 Revisa tus métricas semanalmente</strong><br>
+                    Identifica qué estados generan más ventas y replica esa estrategia.
+                </div>
+                <div class="info-box">
+                    <strong>📱 Rutina</strong><br>
+Si no alimentas la app con los datos y lo haces parte de tu dia a dia, no funcionará para vos ni tu compañia.
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<footer>
+    <p>📘 Black Assistant - Manual de usuario oficial | Diseño mejorado para facilitar tu trabajo diario</p>
+    <p style="font-size:0.9rem; margin-top:0.5rem;">
+        ¿Dudas o sugerencias? 
+        <a href="https://wa.me/5492645474276?text=Hola%21%20Vi%20el%20manual%20de%20Black%20Assistant%20y%20tengo%20una%20consulta" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           style="background: #25d366; color: white; padding: 6px 16px; border-radius: 20px; text-decoration: none; font-weight: bold; display: inline-block; transition: all 0.3s ease;"
+           onmouseover="this.style.background='#1da851'"
+           onmouseout="this.style.background='#25d366'">
+            💬 Contactanos por WhatsApp
+        </a>
+    </p>
+</footer>
+<!-- Botón flotante de WhatsApp -->
+<a href="https://wa.me/5492645474276?text=Hola%21%20Vi%20el%20manual%20de%20Black%20Assistant%20y%20tengo%20una%20consulta" 
+   class="whatsapp-float" 
+   target="_blank" 
+   rel="noopener noreferrer"
+   aria-label="Contactar por WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+         alt="WhatsApp" 
+         width="60" 
+         height="60">
+</a>
+</body>
+</html>
