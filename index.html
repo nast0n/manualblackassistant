@@ -332,6 +332,36 @@
         height: 32px;
     }
 }
+/* Layout de imagen + texto en dos columnas */
+.row-imagen-texto {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.row-imagen-texto .col-imagen {
+    flex: 1;
+    min-width: 0;
+}
+
+.row-imagen-texto .col-texto {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Responsive: en móvil se apilan */
+@media (max-width: 768px) {
+    .row-imagen-texto {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .row-imagen-texto .col-imagen {
+        width: 100%;
+    }
+    .row-imagen-texto .col-texto {
+        width: 100%;
+    }
+}
     </style>
 </head>
 <body>
@@ -456,46 +486,73 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 5: Agregar cita -->
-        <section id="agregar-cita" class="section">
-            <h2>📌 5. Agregar Cita</h2>
-            <p>Desde el detalle del prospecto o desde el calendario, puedes crear una nueva cita.</p>
-            <div class="card">
-                <h3>Datos de la cita</h3>
+<!-- SECCIÓN 5: Agregar cita -->
+<section id="agregar-cita" class="section">
+    <h2>📌 5. Agregar Cita</h2>
+    <p>Desde el detalle del prospecto o desde el calendario, puedes crear una nueva cita.</p>
+    
+    <div class="card">
+        <h3>Datos de la cita</h3>
+        <div class="row-imagen-texto">
+            <div class="col-imagen">
+                <img src="imagen/agregarcita.png" alt="Formulario de cita" style="max-width:100%; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+            </div>
+            <div class="col-texto">
                 <ul>
                     <li><strong>📅 Fecha</strong> y hora de la cita.</li>
                     <li><strong>📝 Nota</strong>: Algo que te sirva para identificar la casa, o qué llevar (o no llevar).</li>
                     <li><strong>📍 Punto en el mapa</strong>: Arrastra el icono rojo hasta la ubicación exacta.</li>
                     <li><strong>⚙️ Estado</strong>: Pendiente, Completada, Cancelada, Reagendada.</li>
                 </ul>
-                <img src="imagen/agregarcita.png" alt="Menú principal" style="max-width:100%; border-radius:12px; margin:1rem 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <!-- SECCIÓN 6: Calendario y agenda -->
-        <section id="calendario" class="section">
-            <h2>🗓️ 6. Calendario y Agenda (Listado de citas)</h2>
-            <p>En la sección <strong>Agenda</strong> se muestran todas tus citas programadas.</p>
-			<img src="imagen/agenda.png" alt="agenda" style="max-width:100%; border-radius:12px; margin:1rem 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+<!-- SECCIÓN 6: Calendario y agenda -->
+<section id="calendario" class="section">
+    <h2>🗓️ 6. Calendario y Agenda (Listado de citas)</h2>
+    <p>En la sección <strong>Agenda</strong> se muestran todas tus citas programadas.</p>
 
-            <div class="step">
-                <strong>⚡ Características visuales:</strong>
-                <ul>
-                    <li><span style="background:#9b59b6; color:white; padding:2px 6px; border-radius:12px;">Morado</span> = Cita programada para hoy.</li>
-                    <li><del>Tachado</del> = Cita con fecha anterior (vencida).</li>
-                    <li>Puedes ver el nombre del cliente y el estado deslizando la pantalla.</li>
-                </ul>
+    <!-- Fila 1: Imagen agenda + Características visuales (SIN FONDO) -->
+    <div class="card">
+        <div class="row-imagen-texto">
+            <div class="col-imagen">
+                <img src="imagen/agenda.png" alt="Agenda" style="max-width:100%; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
             </div>
-			<img src="imagen/detalleagenda.png" alt="desempeño" style="max-width:100%; border-radius:12px; margin:1rem 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+            <div class="col-texto">
+                <!-- Eliminé la clase "step" que daba el fondo gris -->
+                <div style="margin:0;">
+                    <strong>⚡ Características visuales:</strong>
+                    <ul>
+                        <li><span style="background:#9b59b6; color:white; padding:2px 6px; border-radius:12px;">Morado</span> = Cita programada para hoy.</li>
+                        <li><del>Tachado</del> = Cita con fecha anterior (vencida).</li>
+                        <li>Puedes ver el nombre del cliente y el estado deslizando la pantalla.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            <div class="card">
-                <strong>Por cada registro (cita) puedes:</strong><br>
+    <!-- Fila 2: Imagen detalleagenda + Acciones -->
+    <div class="card">
+        <div class="row-imagen-texto">
+            <div class="col-imagen">
+                <img src="imagen/detalleagenda.png" alt="Detalle de agenda" style="max-width:100%; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+            </div>
+            <div class="col-texto">
+                <div style="margin:0;">
+                    <strong>Por cada registro (cita) puedes:</strong><br>
                 • Enviar WhatsApp al representante con el detalle de la demo.<br>
                 • Enviar mensaje por whatsapp o telegram al cliente. Llamada.<br>
 				• Cambiar el estado del registro.<br>
-                • Agregar el resultado de la cita (importante para métricas).
+                • Agregar el resultado de la cita (importante para métricas).</li>
+                    </ul>
+                </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
         <!-- SECCIÓN 7: Resultado de la cita y desempeño -->
         <section id="resultado" class="section">
@@ -523,7 +580,7 @@
                 </ul>
 
                 <p><strong>Que filtraria:</strong> la cantidad de ventas ,citas , llamadas y comisiones.</p>
-<img src="imagen/desempeño.png" alt="desempeño" style="max-width:100%; border-radius:12px; margin:1rem 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+<img src="imagen/desempeño.png" alt="Menú principal" style="max-width:100%; border-radius:12px; margin:1rem 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
 <div class="card">
                 📈 <strong>Métrica de desempeño:</strong> Es muy importante que se complete todos los datos como una rutina, este datos nos ayudar a analizar el performace del representante y corregir falencias.
         </div></section>
